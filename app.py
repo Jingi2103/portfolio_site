@@ -3,7 +3,7 @@
 import streamlit as st
 import pandas as pd
 import os
-from streamlit_lottie import st_lottie
+#from streamlit_lottie import st_lottie
 import json
 import plotly.graph_objects as go
 
@@ -164,7 +164,7 @@ with header_col1:
     try:
         with open("assets/data_animation.json", "r") as f:
             lottie_data = json.load(f)
-        st_lottie(lottie_data, speed=1, loop=True, quality="high", height=180)
+       # st_lottie(lottie_data, speed=1, loop=True, quality="high", height=180)
     except:
         pass
 
