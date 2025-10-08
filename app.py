@@ -3,7 +3,6 @@
 import streamlit as st
 import pandas as pd
 import os
-#from streamlit_lottie import st_lottie
 import json
 import plotly.graph_objects as go
 
@@ -35,6 +34,8 @@ st.markdown(
         background: linear-gradient(180deg, var(--bg) 0%, #0A0F1C 100%);
         color: var(--text);
         font-family: 'Inter', sans-serif;
+        padding-left: 10px;
+        padding-right: 10px;
     }
     #MainMenu, footer { visibility: hidden; }
 
@@ -51,41 +52,39 @@ st.markdown(
         background: var(--card);
         border: 1px solid var(--border);
         border-radius: 16px;
-        padding: 18px 20px;
-        box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+        padding: 16px 18px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.35);
         animation: fadeUp 0.6s ease-out;
         transition: transform .3s ease, box-shadow .3s ease;
+        width: 100%;
     }
     .card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 24px rgba(0,0,0,0.45);
     }
 
     .chip {
         display: inline-block;
-        padding: 6px 12px;
+        padding: 5px 10px;
         border-radius: 999px;
         background: rgba(79,70,229,0.12);
         border: 1px solid rgba(79,70,229,0.35);
         color: var(--text);
-        font-size: 13px;
+        font-size: 12px;
         margin: 4px 6px 0 0;
         backdrop-filter: blur(6px);
         transition: all .2s ease;
     }
-    .chip:hover {
-        background: rgba(79,70,229,0.25);
-        transform: scale(1.05);
-    }
+    .chip:hover { background: rgba(79,70,229,0.25); transform: scale(1.05); }
 
     .pill {
-        padding: 6px 10px;
+        padding: 5px 8px;
         border-radius: 999px;
-        font-size: 12px;
+        font-size: 11px;
         color: var(--text);
         background: rgba(255,255,255,0.04);
         border: 1px solid var(--border);
-        margin-right: 6px;
+        margin-right: 5px;
         transition: all .2s ease;
     }
     .pill:hover {
@@ -93,10 +92,10 @@ st.markdown(
         border-color: var(--accent);
     }
 
-    .h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; margin: 0 0 8px 0; }
-    .h2 { font-size: 22px; font-weight: 600; margin: 0 0 16px 0; }
+    .h1 { font-size: 28px; font-weight: 700; margin: 0 0 6px 0; }
+    .h2 { font-size: 20px; font-weight: 600; margin: 0 0 12px 0; }
     .muted { color: var(--muted); }
-    .divider { height: 1px; background: var(--border); width: 100%; margin: 8px 0 16px 0; }
+    .divider { height: 1px; background: var(--border); width: 100%; margin: 8px 0 12px 0; }
 
     .tagline {
         background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
@@ -109,36 +108,48 @@ st.markdown(
         animation: shimmer 5s infinite linear;
     }
 
-    .social a { text-decoration: none; margin-right: 12px; }
+    .social a { text-decoration: none; margin-right: 8px; }
     .social .btn {
-        display: inline-flex; align-items: center; gap: 8px;
+        display: inline-flex; align-items: center; gap: 6px;
         background: rgba(31,41,55,0.6);
         border: 1px solid var(--border);
         color: var(--text);
-        padding: 8px 12px; border-radius: 10px; font-size: 13px;
+        padding: 6px 10px; border-radius: 8px; font-size: 12px;
         transition: all .25s ease;
     }
     .social .btn:hover {
         border-color: var(--accent);
-        box-shadow: 0 0 12px rgba(20,184,166,0.25);
+        box-shadow: 0 0 10px rgba(20,184,166,0.25);
         transform: scale(1.05);
     }
 
-    .resume-btn {
-        color: #ffffff !important;
-        background-color: #4B5563 !important;
-    }
-    .resume-btn:hover {
-        background-color: #1F2937 !important;
+    .resume-btn { color: #ffffff !important; background-color: #4B5563 !important; }
+    .resume-btn:hover { background-color: #1F2937 !important; }
+
+    /* ---------------- RESPONSIVE ---------------- */
+    @media (min-width: 1200px) {
+        .profile-fixed { position: fixed; right: 24px; top: 88px; width: 280px; }
     }
 
-    @media (min-width: 1200px) {
-      .profile-fixed { position: fixed; right: 24px; top: 88px; width: 280px; }
+    @media (max-width: 1200px) {
+        .profile-fixed { position: relative; width: 100%; margin-top: 20px; }
+        .h1 { font-size: 24px; }
+        .h2 { font-size: 18px; }
     }
+
+    @media (max-width: 768px) {
+        .h1 { font-size: 20px; }
+        .h2 { font-size: 16px; }
+        .chip { font-size: 10px; padding: 4px 8px; }
+        .pill { font-size: 10px; padding: 4px 6px; }
+        .social .btn { padding: 4px 8px; font-size: 11px; gap: 4px; }
+    }
+
     </style>
     """,
     unsafe_allow_html=True,
 )
+
 
 # ---------------- HEADER ----------------
 header_col1, header_col2 = st.columns([0.65, 0.35], gap="large")
@@ -164,7 +175,7 @@ with header_col1:
     try:
         with open("assets/data_animation.json", "r") as f:
             lottie_data = json.load(f)
-       # st_lottie(lottie_data, speed=1, loop=True, quality="high", height=180)
+
     except:
         pass
 
