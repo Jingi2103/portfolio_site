@@ -1,0 +1,5 @@
+numpy
+plotly
+scikit-learn
+tensorflow
+altair
