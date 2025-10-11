@@ -111,7 +111,9 @@ st.markdown(
     .resume-btn:hover { background-color: #1F2937 !important; }
 
     /* Desktop fixed profile card */
-    @media (min-width: 1200px) { .profile-fixed { position: fixed; right: 24px; top: 88px; width: 280px; } }
+    @media (min-width: 1200px) { 
+    .profile-fixed { position: relative; width: 100%; margin-top: 20px; }
+}
 
     /* Tablet adjustments */
     @media (max-width: 1200px) {
@@ -181,8 +183,8 @@ st.markdown('<div class="card">', unsafe_allow_html=True)
 timeline_data = pd.DataFrame({
     "Year": [2022, 2024, 2024, 2024, 2025],
     "Milestone": [
-        " BCA (Kristu Jayanti College)",
-        "MSc Data Science (Christ-Deemed to be University)",
+        "-- BCA (Kristu Jayanti College)",
+        "MSc Data Science (Christ - Deemed to be University)",
         "Full Stack Developer Intern (Unizen Technologies)",
         "Assistant Professor at (Koshy’s Group of Institution)",
         "Data Analyst(Diya Ghar)"
@@ -194,8 +196,8 @@ timeline_data["YOffset_responsive"] = timeline_data["YOffset"] * 0.6
 
 category_colors = {
     "Education": "#4F46E5",
-    "Internship": "#FCD392",
-    "Work Experience": "#10B981"
+    "Internship": "Yellow",
+    "Work Experience": "#14B8A6"
 }
 
 fig = go.Figure()
@@ -219,7 +221,7 @@ frames = [
                 x=timeline_data["Year"][:i],
                 y=timeline_data["YOffset_responsive"][:i],
                 mode="lines+markers+text",
-                line=dict(color="#14B8A6", width=3),
+                line=dict(color="Red", width=3),
                 marker=dict(size=12, color=[category_colors[c] for c in timeline_data["Category"][:i]], line=dict(width=2, color="#0D0D0D")),
                 text=timeline_data["Milestone"][:i],
                 textposition="top center",
@@ -250,7 +252,7 @@ fig.update_layout(
         "buttons": [{
             "label": "▶ View Career Roadmap",
             "method": "animate",
-            "args": [None, {"frame": {"duration": 800, "redraw": True}, "fromcurrent": True, "mode": "immediate"}]
+            "args": [None, {"frame": {"duration": 700, "redraw": True}, "fromcurrent": True, "mode": "immediate"}]
         }],
         "x": 0.42, "y": -0.12
     }]
