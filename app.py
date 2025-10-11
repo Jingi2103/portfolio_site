@@ -181,7 +181,7 @@ st.markdown('<div class="card">', unsafe_allow_html=True)
 timeline_data = pd.DataFrame({
     "Year": [2022, 2024, 2024, 2024, 2025],
     "Milestone": [
-        "BCA (Kristu Jayanti College)",
+        " BCA (Kristu Jayanti College)",
         "MSc Data Science (Christ-Deemed to be University)",
         "Full Stack Developer Intern (Unizen Technologies)",
         "Assistant Professor at (Koshy’s Group of Institution)",
